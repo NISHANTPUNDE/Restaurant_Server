@@ -4,6 +4,8 @@ import menu_router from './routes/Menu_card.js';
 import cors from 'cors';
 import login_router from './routes/Admin_login.js';
 import menu_item_router from './routes/Get_menu_item.js';
+import SuperAdmin_login from './routes/SupeAdmin_login.js';
+import createRestaurant from './routes/Create_Restaurant.js';
 import path from 'path';
 import fs from 'fs';
 
@@ -27,7 +29,9 @@ console.log(__dirname);
 app.use('/api/getmenuitem', menu_item_router);
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api/restaurant', menu_router);
+app.use('/api/login/superadmin', SuperAdmin_login);
 app.use('/api/login', login_router);
+app.use('/api/create-restaurant-account', createRestaurant)
 app.get('/api/getmenuimages', (req, res) => {
     const imagesDir = path.join(__dirname, 'public');
 
