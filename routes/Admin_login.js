@@ -1,7 +1,9 @@
 import express from 'express';
 import Admin_login from '../models/admin_login.js';
-
+import jwt from 'jsonwebtoken';
+import { SECRET_KEY_RESTAURANT } from '../config/config.js';
 const router = express.Router();
+const JWT_SECRET = SECRET_KEY_RESTAURANT;
 
 router.post('/restaurant', async (req, res) => {
     console.log(req.body);
@@ -19,9 +21,10 @@ router.post('/restaurant', async (req, res) => {
             });
         }
         const adminData = admin.toObject();
-        console.log("Login successful, restaurant:", adminData.restaurant);
+        const token = jwt.sign({ id: adminData._id, restaurant: adminData.restaurant }, JWT_SECRET, { expiresIn: '1h' });
         res.status(200).json({
             message: 'Login successful',
+            token,
             restaurant: adminData.restaurant
         });
     } catch (error) {

@@ -1,9 +1,10 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import Super_Admin from '../models/super_adminlogin.js';
-import { SECRET_KEY } from '../config/config.js';
+
 const router = express.Router();
-const JWT_SECRET = SECRET_KEY
+const JWT_SECRET = process.env.SECRET_KEY
+
 router.post('/', async (req, res) => {
     console.log(req.body);
     try {
