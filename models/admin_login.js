@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const adminSchema = new mongoose.Schema({
+    restaurant: {
+        type: String,
+        required: true,
+    },
     username: {
         type: String,
         required: true,
