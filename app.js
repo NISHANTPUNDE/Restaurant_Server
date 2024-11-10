@@ -5,10 +5,12 @@ import fs from 'fs';
 import path from 'path';
 
 import menu_router from './routes/Menu_card.js';
+import editmenucard from './routes/Edit_Menu_Card.js';
 import login_router from './routes/Admin_login.js';
 import menu_item_router from './routes/Get_menu_item.js';
 import SuperAdmin_login from './routes/SupeAdmin_login.js';
 import createRestaurant from './routes/Create_Restaurant.js';
+import deleteMenuCard from './routes/Delete_Menu_Card.js';
 import verifyToken from './midddleware/authMiddleware.js'
 
 
@@ -39,9 +41,11 @@ console.log(__dirname);
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/api/getmenuitem', menu_item_router);
 app.use('/api/restaurant', menu_router);
+app.use('/api/restaurant/edit', editmenucard);
+app.use('/api/restaurant/delete', deleteMenuCard);
 app.use('/api/login', login_router);
 app.use('/api/login/superadmin', SuperAdmin_login);
-app.use('/api/create-restaurant-account', verifyToken, createRestaurant);
+app.use('/api/create-restaurant-account', createRestaurant);
 app.get('/api/getmenuimages', (req, res) => {
     const imagesDir = path.join(__dirname, 'public');
 
