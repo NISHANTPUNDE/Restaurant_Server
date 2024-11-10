@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/:restaurant', async (req, res) => {
     try {
-        const menu_item = await Menu_card.find({ hotelName: req.params.restaurant });
+        const menu_item = await Menu_card.find({ restaurant: req.params.restaurant });
         if (!menu_item) {
             return res.status(404).json({
                 message: 'Menu item not found'
