@@ -17,12 +17,7 @@ import verifyToken from './midddleware/authMiddleware.js'
 
 const app = express();
 app.use(express.json());
-app.use(cors(
-    {
-        origin: 'http://localhost:5173',
-        credentials: true,
-    }
-));
+app.use(cors());
 
 
 mongoose.connect('mongodb+srv://blogging:Blog%40Next@clusterforblog.r8rr1.mongodb.net/?retryWrites=true&w=majority&appName=clusterforblog').then(
