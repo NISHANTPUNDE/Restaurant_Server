@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
-
 import menu_router from './routes/Menu_card.js';
 import editmenucard from './routes/Edit_Menu_Card.js';
 import login_router from './routes/Admin_login.js';
@@ -11,13 +10,18 @@ import menu_item_router from './routes/Get_menu_item.js';
 import SuperAdmin_login from './routes/SupeAdmin_login.js';
 import createRestaurant from './routes/Create_Restaurant.js';
 import deleteMenuCard from './routes/Delete_Menu_Card.js';
+import view_restaurants from './routes/View_Restaurants.js'
+import update_subscription from './routes/Update_Subscription.js'
 import verifyToken from './midddleware/authMiddleware.js'
 
 
 
 const app = express();
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 app.use(express.json());
-app.use(cors());
 
 
 mongoose.connect('mongodb+srv://blogging:Blog%40Next@clusterforblog.r8rr1.mongodb.net/?retryWrites=true&w=majority&appName=clusterforblog').then(
@@ -41,6 +45,8 @@ app.use('/api/restaurant/delete', deleteMenuCard);
 app.use('/api/login', login_router);
 app.use('/api/login/superadmin', SuperAdmin_login);
 app.use('/api/create-restaurant-account', createRestaurant);
+app.use('/api/getallrestaurants', view_restaurants)
+app.use('/api/updatesubscription', update_subscription)
 app.get('/api/getmenuimages', (req, res) => {
     const imagesDir = path.join(__dirname, 'public');
 

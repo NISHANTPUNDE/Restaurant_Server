@@ -13,6 +13,10 @@ const adminSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    subscription_upto: {
+        type: Date,
+        required: true,
+    },
 }, { timestamps: true });
 
 const Admin_login = mongoose.model('Admin', adminSchema);
