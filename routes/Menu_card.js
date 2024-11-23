@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.post('/add', async (req, res) => {
     try {
-        console.log(req.body);
+        console.log("add meu card",req.body);
         const menu_item = new Menu_card({
             hotelName: req.body.dataRestro.hotelName,
             address: req.body.dataRestro.address,

@@ -23,7 +23,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-
 mongoose.connect('mongodb+srv://blogging:Blog%40Next@clusterforblog.r8rr1.mongodb.net/?retryWrites=true&w=majority&appName=clusterforblog').then(
     () => {
         console.log('Connected to MongoDB');
