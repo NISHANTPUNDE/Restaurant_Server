@@ -39,7 +39,7 @@ const adminSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-adminSchema.statics.findExpiringSubscriptions = function (days = 7) {
+adminSchema.statics.findExpiringSubscriptions = function (days = 5) {
     const today = new Date();
     const upcomingDate = new Date();
     upcomingDate.setDate(today.getDate() + days);
