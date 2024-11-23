@@ -12,6 +12,9 @@ import createRestaurant from './routes/Create_Restaurant.js';
 import deleteMenuCard from './routes/Delete_Menu_Card.js';
 import view_restaurants from './routes/View_Restaurants.js'
 import update_subscription from './routes/Update_Subscription.js'
+import notification from './routes/notification.js'
+import subscription_notify from './routes/subscription_notify.js'
+import deleteRestaurant from './routes/Delete_Restaurant.js'
 import verifyToken from './midddleware/authMiddleware.js'
 
 
@@ -46,6 +49,9 @@ app.use('/api/login/superadmin', SuperAdmin_login);
 app.use('/api/create-restaurant-account', createRestaurant);
 app.use('/api/getallrestaurants', view_restaurants)
 app.use('/api/updatesubscription', update_subscription)
+app.use('/api/expiring-subscriptions', notification)
+app.use('/api/subscription_upto', subscription_notify)
+app.use('/api/delete-restaurant', deleteRestaurant)
 app.get('/api/getmenuimages', (req, res) => {
     const imagesDir = path.join(__dirname, 'public');
 

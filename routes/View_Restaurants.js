@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
             message: "Restaurants retrieved successfully",
             data: restaurants
         });
+        console.log(restaurants);
     }
     catch (error) {
         res.status(500).json({
