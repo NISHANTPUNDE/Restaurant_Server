@@ -12,15 +12,16 @@ router.put("/:id", async (req, res) => {
         phone,
         agent,
         subscription_plan,
-        subscription_start
+        subscription_start,
+        todaydate
     } = req.body;
 
     try {
         // Parse the subscription_start date or use the current date as default
-        const startDate = subscription_start ? new Date(subscription_start) : new Date();
+        const startDate = subscription_start ? new Date(subscription_start) : todaydate
 
         // Calculate the subscription_upto date based on the plan
-        let subscription_upto = new Date(startDate);
+        let subscription_upto = todaydate;
         if (subscription_plan === "1-year") {
             subscription_upto.setFullYear(subscription_upto.getFullYear() + 1);
         } else if (subscription_plan === "1-month") {
