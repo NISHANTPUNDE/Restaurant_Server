@@ -16,6 +16,8 @@ router.put("/:id", async (req, res) => {
         todaydate
     } = req.body;
 
+    console.log("req data",req.body ,req.params )
+
     try {
         // Parse the subscription_start date or use the current date as default
         const startDate = subscription_start ? new Date(subscription_start) : todaydate
