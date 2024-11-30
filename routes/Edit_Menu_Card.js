@@ -6,6 +6,7 @@ const router = express.Router();
 router.put('/', async (req, res) => {
     try {
         const { restaurant, dataRestro, dishesByType } = req.body;
+        console.log("req receive",req.body);
 
         // Find the menu item by a unique identifier (e.g., restaurant name or ID)
         const menuItem = await Menu_card.findOne({ restaurant });
