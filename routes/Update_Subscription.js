@@ -16,34 +16,30 @@ router.put("/:id", async (req, res) => {
         todaydate
     } = req.body;
 
-    console.log("req data",req.body ,req.params )
+    console.log("req data", req.body, req.params);
 
     try {
         // Parse the subscription_start date or use the current date as default
-        const startDate = subscription_start ? new Date(subscription_start) : todaydate
+        const startDate = subscription_start ? new Date(subscription_start) : new Date(todaydate);
+        const currentDate = todaydate ? new Date(todaydate) : new Date();
+        let subscription_upto = new Date(currentDate); // Ensure this is a Date object
 
         // Calculate the subscription_upto date based on the plan
-        let subscription_upto = todaydate;
         if (subscription_plan === "1-year") {
             subscription_upto.setFullYear(subscription_upto.getFullYear() + 1);
         } else if (subscription_plan === "1-month") {
             subscription_upto.setMonth(subscription_upto.getMonth() + 1);
-        }
-        else if (subscription_plan === "6-month") {
+        } else if (subscription_plan === "6-month") {
             subscription_upto.setMonth(subscription_upto.getMonth() + 6);
-        }
-        else if (subscription_plan === "3-month") {
+        } else if (subscription_plan === "3-month") {
             subscription_upto.setMonth(subscription_upto.getMonth() + 3);
-        }
-        else if (subscription_plan === "2-month") {
+        } else if (subscription_plan === "2-month") {
             subscription_upto.setMonth(subscription_upto.getMonth() + 2);
-        }
-        else if (subscription_plan === "4-month") {
+        } else if (subscription_plan === "4-month") {
             subscription_upto.setMonth(subscription_upto.getMonth() + 4);
-        }
-        else {
+        } else {
             return res.status(400).json({
-                message: "Invalid subscription plan. Valid options are '1 year' or '1 month'.",
+                message: "Invalid subscription plan. Valid options are '1-year', '6-month', '3-month', '2-month', '4-month', or '1-month'.",
             });
         }
 
@@ -78,8 +74,8 @@ router.put("/:id", async (req, res) => {
         res.status(500).json({
             message: "Failed to update subscription",
             error: error.message,
-        });
-    }
+        });
+    }
 });
 
 export default router;
