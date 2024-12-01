@@ -16,12 +16,16 @@ import notification from './routes/notification.js'
 import subscription_notify from './routes/subscription_notify.js'
 import deleteRestaurant from './routes/Delete_Restaurant.js'
 import verifyToken from './midddleware/authMiddleware.js'
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 
 
 const app = express();
+console.log(process.env.CLIENT_API_BASE_URL);
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: `${process.env.CLIENT_API_BASE_URL}`,
     credentials: true
 }));
 app.use(express.json());
